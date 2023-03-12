@@ -1,0 +1,26 @@
+Question 1: 
+Not = \a.(a (False) (True))
+= \a.(a (\x(\y.y)) (\x(\y.x)))
+
+
+Question 2:
+Lambda for ¬(¬a ∧ ¬b) is:
+NOT (NOT a AND NOT w)
+
+= \a.(a (False) (True)) (\a.(a (False) (True)) p \a.(\b.(ab)b) \a.(a (False) (True)) q )
+= \a.(a (False) (True)) ((a (False) (True))[a:= p] \a.(\b.(ab)b) (a (False) (True)) [a:=q])
+= \a.(a (False) (True)) ((p (False) (True)) \a.(\b.(ab)b) (q (False) (True)))
+= (a (False) (True)) [a:= ((p (False) (True)) \a.(\b.(ab)b) (q (False) (True)))]
+= ((p (False) (True)) \a.(\b.(ab)b) (q (False) (True))) (False) (True)
+= 
+..
+
+
+Question 3:
+= (\xy.x)(\abc.cab)z(\z.zz)
+= (\xy.x)[x:=\abc.cab]z(\z.zz)
+= (\y.(\abc.cab))z(\z.zz)
+= ((\abc.cab))[y:=z](\z.zz)
+= (\abc.cab)(\z.zz)
+= (\bc.cab)[a:=\z.zz]
+= \bc.(c(\z.zz)b)

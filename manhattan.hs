@@ -1,4 +1,4 @@
 manhattan :: [Int] -> [Int] -> [Int]
-manhattan xs ys =  ((abs (x - y)) | x <- xs, y <- ys])
+manhattan xs ys =  [(abs (x - y)) | x <- xs, y <- ys]
 
 
