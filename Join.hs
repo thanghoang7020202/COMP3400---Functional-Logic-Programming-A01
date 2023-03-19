@@ -1,5 +1,4 @@
 module Join (joinBy) where
-import Control.Monad.RWS (All(All))
 -- Do NOT modify anything above this line.
 -- Do NOT import anything.
 

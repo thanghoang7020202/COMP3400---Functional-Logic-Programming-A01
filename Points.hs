@@ -55,11 +55,13 @@ point does. The i-th coordinate of a point should always come from the i-th list
 
 manhattan :: [Int] -> [Int] -> Int
 manhattan xs ys
-    |  null xs || null ys = 0
+    |  null xs && null ys = 0
     |  otherwise = abs (head xs - head ys) + manhattan (tail xs) (tail ys) 
 
 npoints :: [[Int]] -> [[Int]]
-npoints = undefined
+npoints x
+    | null x = [[]]
+    | otherwise = [y:ys | y <- head x, ys <- npoints (tail x)]
 
 closest :: [[Int]] -> Int
 closest = undefined
