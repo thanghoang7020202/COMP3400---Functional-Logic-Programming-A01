@@ -61,7 +61,7 @@ manhattan xs ys
 npoints :: [[Int]] -> [[Int]]
 npoints x
     | null x = [[]]
-    | otherwise = [y:ys | y <- head x, ys <- npoints (tail x)]
+    | otherwise = concatMap (\subx -> map (subx:) (npoints (tail x))) (head x)
 
 closest :: [[Int]] -> Int
 closest = undefined

@@ -20,15 +20,16 @@ magic f x ys = x : magic f (f x (head ys)) (tail ys)
 -- | factorials is a list of factorials of integer numbers starting from 0:
 -- factorials = [1, 1, 2, 6, 24, ...]
 factorials :: [Int]
-factorials = 1 : magic (*) 1 [1..]
+factorials = magic (*) 1 [1..]
 
 -- | listTails is a function that returns all lists obtained by consecutively 
 -- discarding the first element of the argument list, longest first. For 
 -- example, listTails [1, 2, 3, 4] = [[1, 2, 3, 4], [2, 3, 4], [3, 4], [4], []]
+-- create list tail using magic function
 listTails :: [a] -> [[a]]
 listTails [] = []
-listTails xs = xs : listTails xs
-
+listTails xs = magic f xs xs
+    where f xs _ = tail xs
 -- | cumulative is a function that takes a list and returns cumulative sums of 
 -- its elements, i.e. i-th element in the resulting list is the sum of the first
 -- i elements of the input list.
