@@ -1,3 +1,8 @@
+﻿Student: Cao Quoc Thang Hoang
+Student ID: s4759487
+
+Lambda Calculus
+
 Question 1: 
     Not = \a.(a (False) (True))
     = \a.(a (\x(\y.y)) (\x(\y.x)))
@@ -16,9 +21,27 @@ Question 2:
     = (\a.(\b.(ab)a) ((p (False) (True)) (q (False) (True)))) (False) (True)
     = ((\b.(ab)a) [a = (p (False) (True))] (q (False) (True))) (False) (True)
     = (\b.((p (False) (True))b)(p (False) (True)) (q (False) (True))) (False) (True)
-
     = (((p (False) (True))b)(p (False) (True)) [b:= (q (False) (True))] ) (False) (True)
     = (((p(False)(True)) (q(False)(True))) (p(False)(True))) (False) (True)
+Let this be (1)
+We also have (2):
+	True True True 	
+       = (\x.(\y.x)) True True 
+       = x [x := True] [y := True] 
+       = True
+	False False False 
+       = (\x.(\y.y)) False False 
+       = y [x := False] [y := False] 
+       = False
+	False True False
+       = (\x.(\y.y)) True False 
+       = y [x := True] [y := False] 
+       = False
+	False False True
+       = (\x.(\y.y)) False True 
+       = y [x := False] [y := True] 
+       = True
+Combining (1) and (2), there are 4 cases:	
 
     Case 1: p = False and q = False
     (((False(False)(True)) (False(False)(True))) (False(False)(True))) (False) (True)
@@ -48,3 +71,12 @@ Question 3:
     = (\abc.cab)(\z.zz)
     = (\bc.cab)[a:=\z.zz]
     = \bc.(c(\z.zz)b)
+
+Principle Types
+
+(These questions are coded in file PrincipalType.hs)
+
+
+Blockus
+
+
