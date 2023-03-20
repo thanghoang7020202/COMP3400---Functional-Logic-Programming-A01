@@ -51,7 +51,7 @@ Combining (1) and (2), there are 4 cases:
     Case 2: p = True and q = False 
     = (((True(False)(True)) (False(False)(True))) (True(False)(True))) (False) (True)
     = ((False) (True) (False)) (False) (True)
-    = False
+    = True
 
     Case 3: p = False and q = True 
     = (((False(False)(True)) (True(False)(True))) (False(False)(True))) (False) (True)
