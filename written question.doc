@@ -1,4 +1,4 @@
-﻿Student: Cao Quoc Thang Hoang
+Student: Cao Quoc Thang Hoang
 Student ID: s4759487
 
 
@@ -9,11 +9,15 @@ Question 1:
     = \a.(a (\x(\y.y)) (\x(\y.x)))
 
 
+
+
+
 Question 2:
-    Lambda expession for ¬(¬a ∧ ¬b) when let a = p and b = q is: NOT (NOT p AND NOT q)
-    Write this expression in prefix position, we have: NOT (AND (NOT p NOT q))
+    Lambda expession for �(�p ? �q) when let a = p and b = q is: 
+    NOT (NOT p AND NOT q)
 
-
+    Write this expression in prefix position, we have:
+    NOT (AND (NOT p NOT q))
     = \a.(a (False) (True)) (\a.(\b.(ab)a) (\a.(a (False) (True)) p \a.(a (False) (True)) q))
     = (a (False) (True)) [a := (\a.(\b.(ab)a) (\a.(a (False) (True)) p \a.(a (False) (True)) q))]
     = (\a.(\b.(ab)a) (\a.(a (False) (True)) p \a.(a (False) (True)) q)) (False) (True)
@@ -25,24 +29,25 @@ Question 2:
     = (((p (False) (True))b)(p (False) (True)) [b:= (q (False) (True))] ) (False) (True)
     = (((p(False)(True)) (q(False)(True))) (p(False)(True))) (False) (True)
 Let this be (1)
+
 We also have (2):
-• True True True 	
+* True True True 	
        = (\x.(\y.x)) True True 
        = x [x := True] [y := True] 
        = True
-• False False False 
+* False False False 
        = (\x.(\y.y)) False False 
        = y [x := False] [y := False] 
        = False
-• False True False
+* False True False
        = (\x.(\y.y)) True False 
        = y [x := True] [y := False] 
        = False
-• False False True
+* False False True
        = (\x.(\y.y)) False True 
        = y [x := False] [y := True] 
        = True
-Combining (1) and (2), there are 4 cases of p and q:	
+From (1) there are 4 cases of p and q which is simpler to solve by substitute (2) in:	
 
     Case 1: p = False and q = False
     (((False(False)(True)) (False(False)(True))) (False(False)(True))) (False) (True)
@@ -52,7 +57,7 @@ Combining (1) and (2), there are 4 cases of p and q:
     Case 2: p = True and q = False 
     = (((True(False)(True)) (False(False)(True))) (True(False)(True))) (False) (True)
     = ((False) (True) (False)) (False) (True)
-    = False
+    = True
 
     Case 3: p = False and q = True 
     = (((False(False)(True)) (True(False)(True))) (False(False)(True))) (False) (True)
@@ -64,9 +69,12 @@ Combining (1) and (2), there are 4 cases of p and q:
     = ((False) (False) (False)) (False) (True)
     = True
 
-In summary, by grouping these cases and comparing them to OR (p ∨ q) as the truth table below, we can make the conclusion that both of them are equivalent.
+In summary, by grouping these cases and comparing them to OR (p ? q) as the truth table below, we can make the conclusion that both of them are equivalent.
+pq�(�p ? �q)(p ? q)TTTTTFTTFTTTFFFF
 
-pq¬ (¬p ∧ ¬q)p ∨ qTTTTTFTTFTTTFFFF
+
+
+
 Question 3:
     = (\xy.x)(\abc.cab)z(\z.zz)
     = (\xy.x)[x:=\abc.cab]z(\z.zz)
@@ -78,37 +86,38 @@ Question 3:
 
 
 
+
+
 Principle Types
 
 (These questions are coded in file PrincipalType.hs)
 
 
 
+Blockus (Question 10)
 
 
-Blockus
-
-We can use The Principle of Mathematical Induction theorem to prove a 2^n×2^n Blockus board with northwest corner removed can be covered with V3 pieces (3 blocks). 
-Logically, by removing 1 block out of 2^n×2^n Blockus board we can have:
-2^n×2^n-1 (blocks)
-Moreover, to make sure that all V3 pieces can cover the whole board, we need the board is not a straight line of block(s) so that it can fit at least 1 V3 piece (2^n  ×2^n   is always a square so that not necessary) and the number of remaining blocks is divisible by 3:
-〖(2〗^n×2^n-1) ⋮3 (blocks)
-Let P(n)↔ 〖(2〗^n×2^n-1) ⋮3
+We can use The Principle of Mathematical Induction theorem to prove a 2^n�2^n Blockus board with northwest corner removed can be covered with V3 pieces (3 blocks). 
+Logically, by removing 1 block out of 2^n�2^n Blockus board we can have:
+2^n�2^n-1 (blocks)
+Moreover, to make sure that all V3 pieces can cover the whole board, we need the board is not contained a straight line of at least 2 blocks so that it can fit at least 1 V3 piece (fortunately, 2^n  �2^n   is always a square so that not necessary) and the number of remaining blocks is divisible by 3:
+?(2?^n�2^n-1) ?3 (blocks)
+Let P(n)? ?(2?^n�2^n-1) ?3
 Where base case is: 
-P(0)↔ 〖(2〗^0×2^0-1) ⋮3 ↔ 0 ⋮3  ↔T. 
+P(0)? ?(2?^0�2^0-1) ?3 ? 0 ?3  ?T. 
 Induction Hypothesis:
-Assuming that P(n)=T in P(n)→P(n+1) and showing P(n+1) is a consequence of P(n):
-P(n+1)↔ 〖(2〗^(n+1)×2^(n+1)-1)⋮3 
+Assuming that P(n)=T in P(n)?P(n+1) and showing P(n+1) is a consequence of P(n):
+P(n+1)? ?(2?^(n+1)�2^(n+1)-1)?3 
 Starting with the left-hand side of the expression:
-(〖(2〗^n×2^n )×(2^1  × 2^1) -1)
-=4 ×〖(2〗^n×2^n) -1 (1)
-Using the induction hypothesis, we already know that 〖(2〗^n×2^n-1) is divisible by 3. Therefore, the expression can be written as:
-〖(2〗^n×2^n) -1=3×m, where m is an arbitrary integer.
-↔〖(2〗^n×2^n) =3×m+1 (2)
+(?(2?^n�2^n )�(2^1  � 2^1) -1)
+=4 �?(2?^n�2^n) -1 (1)
+Using the induction hypothesis, we already know that ?(2?^n�2^n-1) is divisible by 3. Therefore, the expression can be written as:
+?(2?^n�2^n) -1=3�m, where m is an arbitrary integer.
+??(2?^n�2^n) =3�m+1 (2)
 Substituting (2) into the equation (1) gives:
-=4 ×(3×m+1) -1
-=12×m+3
-Thus, 〖(2〗^(n+1)×2^(n+1)-1) is equal to an integer m multiply by 3 which also divisible by 3.
+=4 �(3�m+1) -1
+=12�m+3
+Thus, ?(2?^(n+1)�2^(n+1)-1) is equal to an integer m multiply by 3 which also divisible by 3.
 For instance,
 
 
@@ -116,7 +125,7 @@ For instance,
 From n = 1
 
 To n +1, which n = 2
-By the principle of mathematical induction, we have proved that  is divisible by 3 for all positive integers n. Finally, it is always true that there exists at least one order of V3 piece(s) that the square  Blockus board with the northwest corner removed can be covered with it.
+By the principle of mathematical induction, we have proved that ?(2?^n�2^n-1) is divisible by 3 for all positive integers n. Finally, there is always true that there is exist at least one order of V3 piece(s) that the square 2^n�2^n Blockus board with northwest corner removed can be covered with it.
 
 
 

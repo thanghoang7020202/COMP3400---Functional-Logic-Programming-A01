@@ -55,13 +55,24 @@ point does. The i-th coordinate of a point should always come from the i-th list
 
 manhattan :: [Int] -> [Int] -> Int
 manhattan xs ys
-    |  null xs && null ys = 0
-    |  otherwise = abs (head xs - head ys) + manhattan (tail xs) (tail ys) 
+    |  null xs || null ys = 0
+    |  length xs == length ys = abs (head xs - head ys) + manhattan (tail xs) (tail ys) 
+    |  length xs - length ys > 0 = manhattan xs (ys ++ replicate (length (tail xs) - length (tail ys)) 0)
+    |  otherwise = manhattan (xs ++ replicate (length (tail ys) - length (tail xs)) 0) ys
 
 npoints :: [[Int]] -> [[Int]]
 npoints x
     | null x = [[]]
-    | otherwise = concatMap (\subx -> map (subx:) (npoints (tail x))) (head x)
+    | otherwise = concatMap (\inner -> map (inner:) (npoints (tail x))) (head x)
 
 closest :: [[Int]] -> Int
-closest = undefined
+closest x
+    | length x < 2 = -1
+    | otherwise = f x
+    
+f :: [[Int]] -> Int
+f x
+    | length x < 2 = maxBound 
+    | otherwise =  min (minimum $ map (manhattan (head x)) (tail x)) (f (tail x))
+
+
