@@ -27,7 +27,7 @@ factorials = magic (*) 1 [1..]
 -- example, listTails [1, 2, 3, 4] = [[1, 2, 3, 4], [2, 3, 4], [3, 4], [4], []]
 -- create list tail using magic function
 listTails :: [a] -> [[a]]
-listTails [] = []
+listTails [] = [[]]
 listTails xs = magic f xs xs
     where f xs _ = tail xs
 -- | cumulative is a function that takes a list and returns cumulative sums of 
